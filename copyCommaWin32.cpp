@@ -45,8 +45,9 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 			char* dst = (char*)dstbuf;
 			while (src <= end) {
 				if (*src != 10 && *src != 13) {
-					while (dst + 2 >= (char*)dstbuf + dstlen) {
+					while (dst + argsLen + 1 >= (char*)dstbuf + dstlen) {
 						unsigned int tmplen = (unsigned int)(dstlen * 1.2);
+						tmplen = tmplen == dstlen ? 5 : tmplen;
 						char* tmp = (char*)malloc(tmplen);
 						memcpy(tmp, dstbuf, dstlen);
 						dst = (char*)tmp + (dst - (char*)dstbuf);
@@ -58,6 +59,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 				} else {
 					while (dst + argsLen + 1 >= (char*)dstbuf + dstlen) {
 						unsigned int tmplen = (unsigned int)(dstlen * 1.2);
+						tmplen = tmplen == dstlen ? 5 : tmplen;
 						char* tmp = (char*)malloc(tmplen);
 						memcpy(tmp, dstbuf, dstlen);
 						dst = (char*)tmp + (dst - (char*)dstbuf);
