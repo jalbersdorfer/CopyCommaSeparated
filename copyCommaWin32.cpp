@@ -67,7 +67,15 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 					}
 					memcpy(dst, lpCmdLine, argsLen);
 					dst += argsLen;
-					src += 2;
+
+					// Jump forward one or two characters, depending on if
+					// the next character is a Newline Character, too.
+					char* next = src + 1;
+					if (*next == 10 || *next == 13) {
+						src += 2;
+					} else {
+						src++;
+					}
 				}
 			}
 
